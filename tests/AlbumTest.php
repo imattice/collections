@@ -59,6 +59,32 @@
             $result = Album::getAll();
             $this->assertEquals([], $result);
         }
+
+        function test_getId()
+        {
+            $name = "Our Secret World";
+            $id = 1;
+            $test_Album = new Album($name, $id);
+
+            $result = $test_Album->getId();
+
+            $this->assertEquals(1, $result);
+        }
+
+        function test_find()
+        {
+            $name = "Our Secret World";
+            $name2 = "One Big Particular Loop";
+            $test_Album = new Album ($name);
+            $test_Album->save();
+            $test_Album2 = new Album ($name2);
+            $test_Album2->save();
+
+            $id = $test_Album->getId();
+            $result = Album::find($id);
+
+            $this->assertEquals($test_Album, $result);
+        }
     }
 
 ?>

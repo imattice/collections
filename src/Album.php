@@ -52,5 +52,18 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM albums;");
         }
+
+        static function find($search_id)
+        {
+            $found_album = null;
+            $albums = Album::getAll();
+            foreach($albums as $album) {
+                $album_id = $album->getId();
+                if ($album_id == $search_id) {
+                    $found_album = $album;
+                }
+            }
+            return $found_album;
+        }
     }
 ?>
